@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <deployment>
+        <dependencies>
+            <module name="org.camunda.bpm.camunda-engine" services="import" />
+            <module name="org.camunda.bpm.model.camunda-bpmn-model" services="import" />
+            <module name="org.camunda.bpm.model.camunda-dmn-model" services="import" />
+            <module name="org.camunda.bpm.dmn.camunda-engine-dmn" services="import" />
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>

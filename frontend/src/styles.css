@@ -1,0 +1,4 @@
+/* Global styles: Tailwind v4 + official Prime UI plugin  */
+
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';

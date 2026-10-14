@@ -1,0 +1,11 @@
+# Camunda 7.18 on WildFly. 
+# Build the WAR first: mvn -f backend/pom.xml package
+
+services:
+  camunda7:
+    image: camunda/camunda-bpm-platform:wildfly-7.18.0
+    container_name: camunda7
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/target/camunda-starter-template.war:/camunda/standalone/deployments/camunda-starter-template.war

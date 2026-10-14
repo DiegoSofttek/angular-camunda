@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/"
+             xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/"
+             xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/"
+             xmlns:camunda="http://camunda.org/schema/1.0/dmn"
+             id="Definitions_1"
+             name="Approval Decision"
+             namespace="http://camunda.org/schema/1.0/dmn">
+
+  <decision id="approval-decision" name="Approval Decision">
+    <decisionTable id="DecisionTable_1" hitPolicy="FIRST">
+
+      <input id="Input_1" label="Amount" camunda:inputVariable="amount">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>amount</text>
+        </inputExpression>
+      </input>
+
+      <input id="Input_2" label="Category" camunda:inputVariable="category">
+        <inputExpression id="InputExpression_2" typeRef="string">
+          <text>category</text>
+        </inputExpression>
+      </input>
+
+      <output id="Output_1" label="Approval Status" name="approvalStatus" typeRef="string" />
+
+      <rule id="Rule_1">
+        <inputEntry id="UnaryTests_1">
+          <text><![CDATA[< 1000]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_2">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1">
+          <text>"APPROVED"</text>
+        </outputEntry>
+      </rule>
+
+      <rule id="Rule_2">
+        <inputEntry id="UnaryTests_3">
+          <text>[1000..5000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_4">
+          <text>"STANDARD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_2">
+          <text>"APPROVED"</text>
+        </outputEntry>
+      </rule>
+
+      <rule id="Rule_3">
+        <inputEntry id="UnaryTests_5">
+          <text>[1000..5000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_6">
+          <text>"PREMIUM"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_3">
+          <text>"REVIEW"</text>
+        </outputEntry>
+      </rule>
+
+      <rule id="Rule_4">
+        <inputEntry id="UnaryTests_7">
+          <text><![CDATA[> 5000]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_4">
+          <text>"REJECTED"</text>
+        </outputEntry>
+      </rule>
+
+    </decisionTable>
+  </decision>
+
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_1">
+      <dmndi:DMNShape id="DMNShape_1" dmnElementRef="approval-decision">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+
+</definitions>
