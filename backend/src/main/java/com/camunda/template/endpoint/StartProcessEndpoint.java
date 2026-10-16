@@ -26,7 +26,7 @@ public class StartProcessEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response startProcess(Map<String, Object> request) {
         try {
-            RuntimeService runtimeService = BpmPlatform.getDefaultProcessEngine().getRuntimeService();
+            RuntimeService runtimeService = getProcessEngine().getRuntimeService();
 
             Map<String, Object> variables = new HashMap<>(request);
 
@@ -45,5 +45,9 @@ public class StartProcessEndpoint {
             error.put("error", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
         }
+    }
+
+    protected org.camunda.bpm.engine.ProcessEngine getProcessEngine() {
+        return BpmPlatform.getDefaultProcessEngine();
     }
 }
