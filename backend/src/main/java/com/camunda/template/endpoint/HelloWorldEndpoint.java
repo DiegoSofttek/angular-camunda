@@ -26,7 +26,7 @@ public class HelloWorldEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response sayHello(@QueryParam("name") String name) {
         try {
-            ProcessEngine processEngine = BpmPlatform.getDefaultProcessEngine();
+            ProcessEngine processEngine = getProcessEngine();
             RuntimeService runtimeService = processEngine.getRuntimeService();
 
             Map<String, Object> variables = new HashMap<>();
@@ -50,5 +50,9 @@ public class HelloWorldEndpoint {
             error.put("error", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
         }
+    }
+
+    protected ProcessEngine getProcessEngine() {
+        return BpmPlatform.getDefaultProcessEngine();
     }
 }
