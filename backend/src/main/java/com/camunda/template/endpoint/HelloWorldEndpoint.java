@@ -7,7 +7,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.camunda.bpm.BpmPlatform;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.runtime.ProcessInstanceWithVariables;
@@ -26,7 +25,7 @@ public class HelloWorldEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response sayHello(@QueryParam("name") String name) {
         try {
-            ProcessEngine processEngine = BpmPlatform.getDefaultProcessEngine();
+            ProcessEngine processEngine = getProcessEngine();
             RuntimeService runtimeService = processEngine.getRuntimeService();
 
             Map<String, Object> variables = new HashMap<>();
@@ -50,5 +49,9 @@ public class HelloWorldEndpoint {
             error.put("error", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();
         }
+    }
+
+    protected ProcessEngine getProcessEngine() {
+        return org.camunda.bpm.BpmPlatform.getDefaultProcessEngine();
     }
 }
