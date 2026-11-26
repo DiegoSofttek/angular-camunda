@@ -10,7 +10,7 @@ public class HelloWorldDelegate implements JavaDelegate {
     private static final Logger LOG = LoggerFactory.getLogger(HelloWorldDelegate.class);
 
     @Override
-    public void execute(DelegateExecution execution) throws Exception {
+    public void execute(DelegateExecution execution) {
         String name = (String) execution.getVariable("name");
         if (name == null || name.isEmpty()) {
             name = "World";

@@ -10,7 +10,7 @@ public class LoggerDelegate implements JavaDelegate {
     private static final Logger LOG = LoggerFactory.getLogger(LoggerDelegate.class);
 
     @Override
-    public void execute(DelegateExecution execution) throws Exception {
+    public void execute(DelegateExecution execution) {
         LOG.info("Process Instance ID: {}", execution.getProcessInstanceId());
         LOG.info("Activity ID: {}", execution.getCurrentActivityId());
         LOG.info("Activity Name: {}", execution.getCurrentActivityName());
