@@ -13,7 +13,7 @@ public class EvaluateDecisionDelegate implements JavaDelegate {
     private static final Logger LOG = LoggerFactory.getLogger(EvaluateDecisionDelegate.class);
 
     @Override
-    public void execute(DelegateExecution execution) throws Exception {
+    public void execute(DelegateExecution execution) {
         String approvalStatus = (String) execution.getVariable("approvalStatus");
         LOG.info("DMN Decision Result - approvalStatus: {}", approvalStatus);
 
